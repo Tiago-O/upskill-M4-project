@@ -1,0 +1,76 @@
+
+.box-player-name {
+    min-width: 100px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.box-player-name-playing {
+    border: solid;
+    border-color: lightgreen;
+    border-radius: 10%;
+}
+
+#img-ball-player1 {
+    width: 25px;
+    height: 25px;
+    background-color: gold;
+    border-radius: 50%;
+}
+#img-ball-player2 {
+    width: 25px;
+    height: 25px;
+    background-color: crimson;
+    border-radius: 50%;
+}
+
+#connect-four-grid {
+    display: flex;
+    justify-content: center;
+}
+.connect-four-col {
+    min-width: 64px;
+    width: 10vw;
+    max-width: 86px;
+
+    background-color: gray;
+}
+.connect-four-col:hover {
+    background-color: darkgray;
+}
+.connect-four-row {
+    display: flex;
+
+    min-height: 64px;
+    height: 10vw;
+    max-height: 86px;
+
+    border: solid;
+    border-color: gray;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.ball-player {
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+}
+.ball-player-0 {
+    background-color: white;
+}
+.ball-player-1 {
+    background-color: gold;
+}
+.ball-player-2 {
+    background-color: crimson;
+}
+
+#box-win {
+    background-color: white;
+    z-index: 1000;
+    position: fixed;
+    right: 25%;
+    top: 40%;
+}

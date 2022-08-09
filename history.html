@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <link rel="icon" type="image/x-icon" href="images/icons8-game-controller-96.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="container text-center mt-2 w-75">
+        <h1 class="mb-5">History</h1>
+
+        <div class="container my-2">
+            <a type="button" href="menu.html" class="d-flex btn btn-outline-secondary w-100">
+                <span class="w-100">Return to Menu</span>
+                <span><i class="bi bi-list"></i></span>
+            </a>
+        </div>
+
+        <div id="history-box" class="container my-5"></div>
+
+    </div>
+
+</body>
+
+<script>
+
+    // load history list
+    let retrievedData = localStorage.getItem('history');
+    let history = JSON.parse(retrievedData);
+    if(!history) {
+        history = [];
+    }
+    console.log(history);
+
+    let divHistoryBox = $('#history-box');
+
+    if (history.length === 0) {
+
+        divHistoryBox.append(`
+            <div class="text-center my-2">
+                <h5>No Game Ever Played :(</h5>
+            </div>
+        `);
+
+    } else {
+
+        for (let i = history.length - 1; i >= 0; i--) {
+            let gameRecord = history[i];
+
+            if (gameRecord.game === 'Memory Game') {
+                // if Memory Game
+                divHistoryBox.append(`
+                    <div class="border border-secondary my-4">
+                        <div class="text-center my-2">
+                            <h5>${gameRecord.game}</h5>
+                        </div>
+                        <div class="d-flex justify-content-around w-100 my-2">
+                            <div class="player1-history-box w-50">${gameRecord.player}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Game Time: ${gameRecord.gameTime}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>played ${formatDate(gameRecord.timestamp)} at ${formatTime(gameRecord.timestamp)}</div>
+                        </div>
+                    </div>
+                `);
+
+            } else {
+                // Tic Tac Toe or Connect Four
+                divHistoryBox.append(`
+                    <div class="border border-secondary my-4">
+                        <div class="text-center my-2">
+                            <h5>${gameRecord.game}</h5>
+                        </div>
+                        <div class="d-flex justify-content-around w-100 my-2">
+                            <div class="player1-history-box w-50">${gameRecord.player1}</div>
+                            <div class="player2-history-box w-50">${gameRecord.player2}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Game Time: ${gameRecord.gameTime}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>played ${formatDate(gameRecord.timestamp)} at ${formatTime(gameRecord.timestamp)}</div>
+                        </div>
+                    </div>
+                `);
+
+                if (gameRecord.winner === gameRecord.player1) {
+                    $('.player1-history-box').eq(indexReverse(history.length, i)).addClass('border border-4 border-success').prepend('<i class="bi bi-trophy-fill"></i> &nbsp');
+                } else {
+                    $('.player2-history-box').eq(indexReverse(history.length, i)).addClass('border border-4 border-success').prepend('<i class="bi bi-trophy-fill"></i> &nbsp');
+                }
+            }
+        }
+    }
+
+    // to get the mirror side of the index
+    // indexes = 0...5, len = 6, if 0 > 5, 1 > 4, ... , 5 > 0
+    function indexReverse(length, i) {
+        let a = [];
+        for (let i = 0; i < length; i++) {
+            a.push(i);
+        }
+        return a.reverse()[i];
+    }
+
+    // format Date.now()
+    function formatDate(date) {
+        let d = new Date(date),
+            year = d.getFullYear(),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [day, month, year].join('/');
+    }
+
+    function formatTime(time) {
+        let t = new Date(time),
+            hour = t.getHours(),
+            min = '' + t.getMinutes(),
+            sec = '' + t.getSeconds();
+
+        if (min.length < 2)
+            min = '0' + min;
+        if (sec.length < 2)
+            sec = '0' + sec;
+
+        return [hour, min, sec].join(':');
+    }
+
+</script>
+
+</html>
