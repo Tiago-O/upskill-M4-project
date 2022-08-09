@@ -89,7 +89,7 @@ function equalCells(a, b, c){
     let bgB = cellB.css("background-image");
     let bgC = cellC.css("background-image");
     if( (bgA == bgB) && (bgB == bgC) && (bgA != "none" && bgA != "")){
-        if(bgA.indexOf("1.png") >= 0){
+        if(bgA.indexOf("images/1.png") >= 0){
             winner = player1.val();
             point1++;
             score1.empty();
@@ -173,7 +173,7 @@ cell.click(function(){
     let bg = $(this).css("background-image");
     if(bg == "none" || bg == "")
     {
-        let fig = "url(" + turn.toString() + ".png)";
+        let fig = "url(images/" + turn.toString() + ".png)";
         $(this).css("background-image", fig);
         turn = (turn == 1? 2:1);
         endGame();
