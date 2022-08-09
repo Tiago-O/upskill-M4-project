@@ -1,0 +1,102 @@
+#game{
+    width:603px;
+    height:600px;
+    border:solid 3px;
+    margin: 2% auto 10% auto;
+}
+
+.line{
+    height:200px;
+    border-bottom:solid 1px;
+    display:flex;
+}
+
+.cell{
+    width:200px;
+    height:100%;
+    border-right:solid 1px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+
+#gameName {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+#infos{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.timer{
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#round{
+    display: flex;
+    justify-content: center;
+}
+
+#score1 {
+    display: flex;
+    justify-content: center;
+}
+
+
+#score2 {
+    display: flex;
+    justify-content: center;
+}
+
+#ticTacMenu {
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+    font-size: xx-large;
+}
+
+
+#player1, #player2 {
+    margin:2px;
+    text-align: center;
+}
+
+#border1{
+    border-color: green;
+    padding: 3%;
+}
+#border2{
+    border-color: green;
+    padding: 3%;
+}
+
+i{
+    font-size: xx-large;
+}
+
+
+.iconNome{
+    display: flex;
+
+}
+
+#turn1 ,#turn2{
+    margin-left: 10px;
+}
+
+#box-win {
+    background-color: #F5F5F7;
+    z-index: 1000;
+    position: fixed;
+    right: 25%;
+    top: 40%;
+    border-radius:25px;
+}
