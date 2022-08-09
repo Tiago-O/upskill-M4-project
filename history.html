@@ -60,7 +60,7 @@
                             <h5>${gameRecord.game}</h5>
                         </div>
                         <div class="d-flex justify-content-around w-100 my-2">
-                            <div class="player1-history-box w-50">${gameRecord.player}</div>
+                            <div class="w-50">${gameRecord.player}</div>
                         </div>
                         <div class="my-2">
                             <div>Game Time: ${gameRecord.gameTime}</div>
@@ -73,7 +73,7 @@
 
             } else {
                 // Tic Tac Toe or Connect Four
-                divHistoryBox.append(`
+                let historyBlock = $(`
                     <div class="border border-secondary my-4">
                         <div class="text-center my-2">
                             <h5>${gameRecord.game}</h5>
@@ -89,13 +89,18 @@
                             <div>played ${formatDate(gameRecord.timestamp)} at ${formatTime(gameRecord.timestamp)}</div>
                         </div>
                     </div>
-                `);
+                `)
 
+                // add class to winner
                 if (gameRecord.winner === gameRecord.player1) {
-                    $('.player1-history-box').eq(indexReverse(history.length, i)).addClass('border border-4 border-success').prepend('<i class="bi bi-trophy-fill"></i> &nbsp');
+                    historyBlock.find('.player1-history-box').addClass('border border-4 border-success').prepend('<i class="bi bi-trophy-fill"></i> &nbsp');
                 } else {
-                    $('.player2-history-box').eq(indexReverse(history.length, i)).addClass('border border-4 border-success').prepend('<i class="bi bi-trophy-fill"></i> &nbsp');
+                    historyBlock.find('.player2-history-box').addClass('border border-4 border-success').prepend('<i class="bi bi-trophy-fill"></i> &nbsp');
                 }
+
+                // appends divs history block
+                divHistoryBox.append(historyBlock);
+
             }
         }
     }
