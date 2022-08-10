@@ -10,6 +10,7 @@ let timerInterval;
 let minutes = $('#minutes');
 let seconds = $('#seconds');
 let boxBackground = $('#boxBackground');
+let gamestate = true;
 
 if (ticTacMenu.show()) {
     ticTacToe.hide();
@@ -34,9 +35,6 @@ startGame.click(function () {
     // tem que começar a 00:00
 
     timer();
-
-
-
 
     if( players()){
        ticTacToe.show();
@@ -69,7 +67,7 @@ return false;
 //jogo
 // identicação de variaveis
 let turn = 1;
-$("#border1").css("border","solid").css("border-color","#02ff0f");
+$("#border1").css("border","solid").css("border-color","#02ff0f").css("background-color","#F5F5F7").css("border-radius","25px");
 let winner = "";
 let score1 = $("#score1");
 let point1 = 0;
@@ -115,9 +113,10 @@ function endGame(){
         equalCells(1, 4, 7) || equalCells(2, 5, 8) || equalCells(3, 6, 9) ||
         equalCells(1, 5, 9) || equalCells(3, 5, 7)
     ){
+        gamestate=false;
         // adicionar time out
         setTimeout(() => {
-            pwin.append(`O ${winner} venceu!  `);
+            pwin.append(`${winner} Won!  `);
             if((roundNumber === 5 )|| (point1===3) || (point2===3)){
                 gameover();
                 round.empty();
@@ -137,18 +136,16 @@ function endGame(){
             winner="";
 
         }, "500");
-        // Remove the click event
-      // let cell =$(".cell");
-       //cell.off("click");
-    } else if(diferentCells()){ // alem do empate repetir a cada jogada adcionar uma border para seleccionar o...
-        // let result= $("#result"); // ...jogador que esta a jogar.
-        //result.append(`<h1>Empate!</h1>`);
+    } else if(diferentCells()){
+
+        gamestate=false;
+        console.log(gamestate);
         // adicionar time out
         setTimeout(() => {
             boxWin.show()
             boxBackground.show();
 
-            pwin.append(`Empate!  `);
+            pwin.append(`TIE!  `);
 
             if((roundNumber === 5)){
                 boxWin.show()
@@ -171,13 +168,13 @@ function endGame(){
 
     } else {
         if( turn ===1){
-            $("#border1").css("border","solid").css("border-color","#02ff0f");
-            $("#border2").css("border","none");
+            $("#border1").css("border","solid").css("border-color","#02ff0f").css("background-color","#F5F5F7").css("border-radius","25px");
+            $("#border2").css("border","none").css("background-color","white");
 
 
         } else{
-            $("#border2").css("border","solid").css("border-color","#02ff0f");
-            $("#border1").css("border","none");
+            $("#border2").css("border","solid").css("border-color","#02ff0f").css("background-color","#F5F5F7").css("border-radius","25px");
+            $("#border1").css("border","none").css("background-color","white");
 
         }
     }
@@ -185,22 +182,29 @@ function endGame(){
 
 // what happens when u click a cell
 let cell =$(".cell");
-cell.click(function(){
-    let bg = $(this).css("background-image");
-    if(bg == "none" || bg == "")
-    {
-        let fig = "url(images/" + turn.toString() + ".png)";
-        $(this).css("background-image", fig);
-        turn = (turn == 1? 2:1);
-        endGame();
-    }
-});
+
+    cell.click(function(){
+        if(gamestate){
+            let bg = $(this).css("background-image");
+            if(bg == "none" || bg == "")
+            {
+                let fig = "url(images/" + turn.toString() + ".png)";
+                $(this).css("background-image", fig);
+                turn = (turn == 1? 2:1);
+                endGame();
+            }
+        }
+
+    });
+
+
 
 let continueButton = $("#continueButton");
 continueButton.click(function () {
     boxWin.hide();
     boxBackground.hide();
     pwin.empty();
+    gamestate = true;
 });
 
 playAgainButton.click(function () {
@@ -221,7 +225,7 @@ playAgainButton.click(function () {
     timer();
     endGame();
     playAgainButton.hide();
-
+    gamestate = true;
 });
 
 
@@ -251,20 +255,20 @@ function restart() {
 
 
 let champ;
-function gameover(){//pq nao para qdo chega a 3?
+function gameover(){
     continueButton.hide();
     if(point1>point2){
         champ = player1.val();
-        pwin.append(`O ${player1.val()} é o campeão!`);
+        pwin.append(`${player1.val()} is the Champion!`);
 
 
     } else if(point1<point2){
         champ = player2.val();
-        pwin.append(`O ${player2.val()} é o campeão!`);
+        pwin.append(`${player2.val()} is the Champion!`);
 
     } else{
-        champ = "Empate";
-        pwin.append(`EMPATARAM`);
+        champ = "Tie! ";
+        pwin.append(`It's a TIE!! `);
     }
 
     //guardar no historico

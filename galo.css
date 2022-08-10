@@ -1,18 +1,18 @@
 #game{
-    width:603px;
-    height:600px;
+    width: calc(90vh - 280px);
+    height: calc(90vh - 280px);
     border:solid 3px;
     margin: 2% auto 10% auto;
 }
 
 .line{
-    height:200px;
+    height:33.33333%;
     border-bottom:solid 1px;
     display:flex;
 }
 
 .cell{
-    width:200px;
+    width:33.333333%;
     height:100%;
     border-right:solid 1px;
     background-position: center;
@@ -20,6 +20,10 @@
 }
 
 
+.cell:hover{
+    background-color: #F5F5F7;
+    position: relative;
+}
 
 #gameName {
     display: flex;
@@ -36,8 +40,7 @@
 .timer{
     display: flex;
     justify-content: center;
-    margin-left: 10%;
-    margin-right: 10%;
+    font-size: x-large;
 }
 
 #round{
@@ -102,10 +105,3 @@ i{
 }
 
 
-#boxBackground {
-    z-index: 500;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    opacity: 0.5;
-}
