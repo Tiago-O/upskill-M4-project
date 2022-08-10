@@ -12,9 +12,10 @@ body {
     background-attachment: fixed;
 }
 
+/* #### Titles #### */
+
 h1 {
     font-size: 3.0em;
-    color: #f6f1da;
     text-shadow: 0 0 30px #0000FF , 0 0 10px #FF0000;
     text-align: center;
     font-weight: 500;
@@ -22,28 +23,29 @@ h1 {
     cursor: pointer;
 }
 
-h2 {
+#game-title {
     color: #f6f1da;
-    font-size: 1.35em;
-    text-align: center;
-    margin-top: 0;
 }
 
-h3, h4 {
+h2, h3, #timer {
     color: #f6f1da;
-    font-size: 1em;
     text-align: center;
+}
+
+h2 {
+    font-size: 1.35em;
+}
+
+h3, #timer {
+    font-size: 1em;
     margin: 0;
 }
 
-.outer {
-    display: table;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+#timer {
+    margin-bottom: 7px;
 }
+
+/* #### Form #### */
 
 form {
     flex-direction: column;
@@ -65,6 +67,8 @@ form > div > label {
     color: #f6f1da;
 }
 
+/* text input */
+
 input[type=text] {
     margin:1.0em;
     border:none;
@@ -82,6 +86,12 @@ input[type=text] {
 
 input[type="text"]::placeholder {
     color: hsl(225, 97%, 26%);
+}
+
+/* Radio input */
+
+.input-radio-container{
+    margin: 2em;
 }
 
 input[type="radio"] {
@@ -104,9 +114,7 @@ input[type="radio"]:checked+label {
     text-shadow: 0 0 0.75rem hsl(225, 97%, 26%, 45%);
 }
 
-.input-radio-container{
-    margin: 2em;
-}
+/* #### Button #### */
 
 button {
     height: 2em;
@@ -133,25 +141,62 @@ button:hover {
     color: hsl(225, 97%, 26%);
 }
 
+/* #### Table icons #### */
+
+#table-icons-container {
+    background-color: rgba(246, 241, 218, 75%);
+    /*position: absolute;*/
+    display: flex;
+    flex-direction: row;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 0.75rem hsl(225, 97%, 26%, 45%));
+    width: 100%;
+    max-width: calc(100vh - 120px);
+    margin: 0.5em auto;
+}
+
+#table-icons-container > svg {
+    margin: 0.5em;
+    max-height: 1.5em;
+}
+
+/* #### Grid cards #### */
+
 #grid-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding-left: 20em;
-    padding-right: 20em;
     cursor: pointer;
-    margin-top: 1.5em;
     z-index: 0;
-+        }
+    width: 100%;
+    max-width: calc(100vh - 120px);
+    margin: auto;
+    height: calc(100vh - 120px);
+}
+
+.grid-easy .grid-card {
+    /*height: calc(33.3333% - 10px);*/
+    height: calc(25% - 10px);
+}
+
+.grid-medium .grid-card {
+    height: calc(25% - 10px);
+}
+
+.grid-advanced .grid-card {
+    /*height: calc(20% - 10px);*/
+    height: calc(25% - 10px);
+}
 
 .grid-card {
-    flex: 1 0 20%;
     background-color: #f6c333;
     filter: drop-shadow(0 0 0.75rem hsl(225, 97%, 26%, 45%));
     border-radius: 12px;
-    margin: 1em;
-    height: 7.5rem;
+    margin: 5px;
     transition: .2s ease-in-out 0s;
+    width: calc(25% - 10px);
 }
 
 .grid-card:hover {
@@ -159,19 +204,39 @@ button:hover {
     filter: drop-shadow(0 0 0.75rem crimson);
 }
 
+/*.grid-card:active {
+    transform: rotateY(90deg);
+}*/
+
 svg {
     color: #864ba2;
-    margin: 0.5em;
+}
+
+/* #### Pop-up #### */
+
+#pop-up-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 100;
 }
 
 #pop-up {
-    background-color: rgba(246, 241, 218, 0.25);
+    background-color: rgba(246, 241, 218, 75%);
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    border-radius: 30px;
     justify-content: center;
     align-items: center;
     z-index: 1;
+    padding: 2em;
+    filter: drop-shadow(0 0 0.75rem hsl(225, 97%, 26%, 45%));
+}
+
+#pop-up-title{
+    color: #f6c333;
 }
