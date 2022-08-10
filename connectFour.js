@@ -192,6 +192,7 @@ function newGameGrid() {
     for (let i = 0; i < board[0].length; i++) {
         let col = $(`<div id="col_${i}" class="connect-four-col"></div>`);
 
+        // allows to click each col
         col.click(() => {
             if(!gameOver) {
                 boardAfterPlay(i);
