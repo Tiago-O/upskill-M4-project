@@ -206,7 +206,7 @@ function newGameGrid() {
             <div class="ball-player ball-player-0"></div>
         </div>`)
         }
-        // append da col com as rows
+        // append cols with rows
         connectFourGrid.append(col);
     }
 }
