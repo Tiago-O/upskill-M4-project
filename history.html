@@ -78,7 +78,7 @@
                         <div class="text-center my-2">
                             <h5>${gameRecord.game}</h5>
                         </div>
-                        <div class="d-flex justify-content-around w-100 my-2">
+                        <div class="players-history-box d-flex justify-content-around w-100 my-2">
                             <div class="player1-history-box w-50">${gameRecord.player1}</div>
                             <div class="player2-history-box w-50">${gameRecord.player2}</div>
                         </div>
@@ -94,8 +94,14 @@
                 // add class to winner
                 if (gameRecord.winner === gameRecord.player1) {
                     historyBlock.find('.player1-history-box').addClass('border border-4 border-success').prepend('<i class="bi bi-trophy-fill"></i> &nbsp');
-                } else {
+                } else if (gameRecord.winner === gameRecord.player2) {
                     historyBlock.find('.player2-history-box').addClass('border border-4 border-success').prepend('<i class="bi bi-trophy-fill"></i> &nbsp');
+                } else {
+                    // draw
+                    historyBlock.find('.players-history-box').addClass('border border-4 border-warning');
+                    historyBlock.find('.player1-history-box').removeClass('w-50').addClass('w-auto');
+                    historyBlock.find('.player2-history-box').removeClass('w-50').addClass('w-auto');
+                    historyBlock.find('.player2-history-box').before('<div class="w-auto"><i class="bi bi-emoji-neutral-fill"></i></div>');
                 }
 
                 // appends divs history block
