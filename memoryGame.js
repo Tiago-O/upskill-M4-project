@@ -133,7 +133,7 @@ function displayTableIcons() {
     let totalIcons = getTotalIconsTypes();
 
     for (let i = 0; i < totalIcons; i++) {
-        switchIcons(i, tempDiv);
+        insertCardIcons(i, tempDiv);
     }
 }
 
@@ -166,7 +166,7 @@ function displayCards() {
     for (let r = 0; r < totalGridRows; r++) {
         for (let c = 0; c < totalGridColumns; c++) {
             let cell = $(`<div class="grid-card" ></div>`);
-            insertCardIcons(r, c, cell)
+            insertCardIcons(cardValues[r][c], cell)
             cell.children().hide(); // Hide all svg
             cell.click(function(){
             // Does not let select more than two cards, the same card or disabled card.
@@ -243,11 +243,7 @@ function displayCards() {
     }
 }
 
-function insertCardIcons(r, c, cell) {
-    switchIcons(cardValues[r][c], cell)
-}
-
-function switchIcons(iconId, temporaryDiv) {
+function insertCardIcons(iconId, temporaryDiv) {
     switch (iconId) {
         case(0): // Rocket
             temporaryDiv.append(`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rocket" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
