@@ -156,7 +156,7 @@ button:hover {
     margin: 1.5em auto;
 }
 
-#table-icons-container > svg {
+#table-icons-container > img {
     margin: 0.5em;
     max-height: 1.5em;
 }
@@ -194,6 +194,7 @@ button:hover {
     filter: drop-shadow(0 0 0.75rem hsl(225, 97%, 26%, 45%));
     border-radius: 12px;
     margin: 5px;
+    transform: rotateY(0deg);
     transition: .2s ease-in-out 0s;
     width: calc(25% - 10px);
 }
@@ -202,13 +203,9 @@ button:hover {
     transform: scale(1.05);
     filter: drop-shadow(0 0 0.75rem crimson);
 }
-/*
-.grid-card:active {
+
+.grid-card.active {
     transform: rotateY(90deg);
-}
-*/
-svg {
-    color: #864ba2;
 }
 
 /* #### Pop-up #### */
