@@ -21,8 +21,7 @@ console.log(history);
 // play: 0 - 6 (index) > iPlay
 // player: number 1 or number 2
 let player;
-// div win-player-name !== victor player
-let winPlayerName = $('#win-player-name');
+let winPlayerNameBox = $('#win-player-name');
 
 // what happens with every play
 // (board and player are global variables)
@@ -31,8 +30,6 @@ function boardAfterPlay(iPlay) {
         if (board[i][iPlay] === 0) {
             board[i][iPlay] = player;
             let colRow = $(`#col_${iPlay}_row_${i}`);
-
-            // colRow.eq(0).removeClass("ball-player-0").addClass(`ball-player-${player}`);
 
             colRow.empty();
             colRow.append(`<div class="ball-player ball-player-${player}"></div>`)
@@ -47,7 +44,7 @@ function boardAfterPlay(iPlay) {
                 // text in victory box
                 let victor;
                 winner === 1 ? victor = player1InputName.val() : victor = player2InputName.val();
-                winPlayerName.text(`${victor} won!!`)
+                winPlayerNameBox.text(`${victor} won!!`)
 
                 // stops setInterval
                 clearInterval(intervalId);
@@ -72,7 +69,7 @@ function boardAfterPlay(iPlay) {
                 // no victory > but the board is full
                 gameOver = true;
                 victoryBox.show();
-                winPlayerName.text('It is a draw.')
+                winPlayerNameBox.text('It is a draw.')
                 playSound('success_001');
 
                 // stops setInterval
@@ -144,7 +141,7 @@ function victory(board) {
     return 0;
 }
 
-// is the board full of pieces?
+// is the board full?
 function fullBoard(board) {
     return !board[board.length - 1].includes(0);
 }
@@ -171,11 +168,10 @@ function newGame(board) {
 }
 
 // GAME running
-
 let connectFourGrid = $('#connect-four-grid');
 let boxPlayer = $('.box-player-name');
 
-// if new game > 1st to play is random
+// if new game -> 1st player is random
 if (newGame(board)) {
         player = randomFirstPlayer();
         boxPlayer.eq(player - 1).addClass("box-player-name-playing");
@@ -192,6 +188,7 @@ function newGameGrid() {
     for (let i = 0; i < board[0].length; i++) {
         let col = $(`<div id="col_${i}" class="connect-four-col"></div>`);
 
+        // allows to click each col
         col.click(() => {
             if(!gameOver) {
                 boardAfterPlay(i);
@@ -206,10 +203,12 @@ function newGameGrid() {
             <div class="ball-player ball-player-0"></div>
         </div>`)
         }
-        // append da col com as rows
+        // append rows with cols to connect four grid
         connectFourGrid.append(col);
     }
 }
+
+// Game Menus and Area
 
 let connectFourMenu = $('#connect-four-menu');
 let gameArea = $('#game-area');
@@ -289,7 +288,6 @@ playAgain.click(function () {
 });
 
 // TIMER
-
 let timer = $('#timer');
 let intervalId;
 let ss;
