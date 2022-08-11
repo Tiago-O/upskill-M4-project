@@ -9,6 +9,7 @@
     height:33.33333%;
     border-bottom:solid 1px;
     display:flex;
+    background-color: white;
 }
 
 .cell{
@@ -28,8 +29,10 @@
 #gameName {
     display: flex;
     justify-content: center;
-
-}
+    width: 20%;
+    background-color: white;
+    margin: auto;
+    }
 
 
 #infos{
@@ -38,9 +41,12 @@
 }
 
 .timer{
+    font-size: x-large;
     display: flex;
     justify-content: center;
-    font-size: x-large;
+    width: 15%;
+    background-color: white;
+    margin: auto;
 }
 
 #round{
@@ -105,3 +111,7 @@ i{
 }
 
 
+#roundContainer{
+    background-color: white;
+    height:50%;
+}

@@ -139,7 +139,6 @@ function endGame(){
     } else if(diferentCells()){
 
         gamestate=false;
-        console.log(gamestate);
         // adicionar time out
         setTimeout(() => {
             boxWin.show()
@@ -226,6 +225,10 @@ playAgainButton.click(function () {
     endGame();
     playAgainButton.hide();
     gamestate = true;
+    fire.css("background-image", "none");
+    audio.pause();
+    audio.currentTime = 0;
+    playSound("lose");
 });
 
 
@@ -260,11 +263,13 @@ function gameover(){
     if(point1>point2){
         champ = player1.val();
         pwin.append(`${player1.val()} is the Champion!`);
-
+        champion();
 
     } else if(point1<point2){
         champ = player2.val();
         pwin.append(`${player2.val()} is the Champion!`);
+        champion();
+
 
     } else{
         champ = "Tie! ";
@@ -311,4 +316,18 @@ function saveGame(){
     localStorage.setItem("history", JSON.stringify(history));
 
 }
+let audio;
+function playSound(soundName) {
+    audio = new Audio(`audio/${soundName}.mp3`);
+    audio.play();
+}
 
+
+let fire = $(`body`);
+function champion(){
+
+    let gifFire = "url(https://bestanimations.com/media/fireworks/671801409ba-awesome-coloful-fireworks-animated-gif-image-3.gif)";
+
+    fire.css("background-image", gifFire);
+    playSound("queenChamps");
+}
